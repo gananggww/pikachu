@@ -1,12 +1,25 @@
 import React from 'react';
+import ButtonCustom from './button'
+import InputCustom from './input'
 
 class Headers extends React.Component{
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             date: 0,
             uri: 'http://www.pokemonget.eu/shop/979-thickbox_default/pikachu-birthday-event-pokemon.jpg',
-            status: false
+            status: false,
+            color: 'pink',
+            fetch: [{
+                id: 1,
+                name: 'akbar'
+            }, {
+                id: 2,
+                name: 'yoga'
+            }, {
+                id: 3,
+                name: 'irul'
+            }]
         }
     }
     tambah() {
@@ -35,7 +48,7 @@ class Headers extends React.Component{
         }
     }
     ganti_image() {
-        if (this.state.status == false) {
+        if (this.state.status === false) {
             this.setState({
                 uri: 'https://pokemonletsgo.pokemon.com/assets/img/common/char-pikachu.png',
                 status: true
@@ -47,26 +60,52 @@ class Headers extends React.Component{
             })
         }
     }
+    ganti_warna() {
+        if (this.state.color === 'pink') {
+            this.setState({
+                color: 'blue'
+            })
+        } else {
+            this.setState({
+                color: 'pink'
+            })
+        }
+    }
+    fetching() {
+        if (typeof(this.state.fetch) == 'object') {
+            return (
+                this.state.fetch.map((e, idx) => {
+                    return (
+                        <div key={idx}>{e.id} : {e.name}</div>
+                    )
+                })
+            )
+        } else {
+            return <div>DATA TYPE NOT SUPPORTED</div>
+        }
+    }
+    insput(e) {
+        console.log('INI INPUT',e);
+    }
     render() {
         return (
             <div>
-                <div className='header'>   
+                <div style={{backgroundColor: this.state.color}} className='header'>   
                     <div className='header-frame'>
                         <img 
                             onClick={() => this.ganti_image()} 
                             style={{width: '100%'}} 
                             src={this.state.uri}
+                            alt='hehe'
                         />
                     </div>
                     <div className='header-content'>
-                        <div className='header-title'>
+                        <div onClick={() => this.ganti_warna()} className='header-title'>
                             Hacktiv8 MeetUP
                         </div>
                         <div className='header-isi'>
                             <div className='header-isi-attr'>
-                                <div>Location</div>
-                                <div>Mambers</div>
-                                <div>Organizers</div>
+                                {this.fetching()}
                             </div>
                             <div className='header-isi-value'>
                                 <div>Jakarta</div>
@@ -74,13 +113,24 @@ class Headers extends React.Component{
                                 {this.hacktiv()}
                             </div>
                         </div>
-                        <div onClick={() => this.tambah()} className='header-button'>
-                            tambah
-                        </div>
-                        <div onClick={() => this.kurang()} className='header-button'>
-                            kurang
-                        </div>
+                        <ButtonCustom
+                            onClick={() => this.tambah()}
+                            color='red'
+                            value='Tambah'
+                        ></ButtonCustom>
+                        <ButtonCustom
+                            onClick={() => this.kurang()}
+                            color='blue'
+                            value='kurang'
+                        ></ButtonCustom>
+                        <InputCustom
+                            value_attr={'INI VALUE BARU'}
+                            name_attr={'akbar'}
+                            defaultValue='HEHE'
+                            
+                        ></InputCustom>
                     </div>
+                    
                 </div>
             </div>
         )
