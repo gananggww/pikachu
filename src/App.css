@@ -98,11 +98,17 @@
   background-color: lightgrey;
   min-height: 1000px;
   display: flex;
+  flex-wrap: wrap;
+}
+
+.lists-card  div {
+  margin : 10px;
 }
 
 .list-card {
   background-color: pink;
-  width: 400px;
+  width: 31%;
+  max-width: 400px;
   height: 400px;
 }
 
