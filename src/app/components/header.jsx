@@ -127,6 +127,7 @@ class Headers extends React.Component{
                             value_attr={'INI VALUE BARU'}
                             name_attr={'akbar'}
                             defaultValue='HEHE'
+                            props_input={(e) =>  this.props.props_input_main(e)}
                             
                         ></InputCustom>
                     </div>

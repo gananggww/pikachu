@@ -1,7 +1,7 @@
 import React from 'react';
 import Lists from './lists'
 
-const Containers = () => {
+const Containers = ({props_list}) => {
     let json = [{
         id: 1,
         title: 'Kelas 1',
@@ -23,11 +23,13 @@ const Containers = () => {
         content1: 'ini bukan apa apa',
         content2: 'ini bukan siapa siapa'
     }]
+
+    let json_filter = json.filter(e => e.title.toLowerCase().includes(props_list))
     return (
         <div>
             <div className='container'>   
                 <Lists
-                    maping={json}
+                    maping={json_filter}
                 />
             </div>
         </div>
