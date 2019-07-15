@@ -10,7 +10,16 @@ class Main extends React.Component {
             propsan_bro: ""
         }
     }
+
+    componentWillMount() {
+        console.log('AKU WILL MOUNT');
+        
+    }
+    componentDidMount() {
+        console.log('AKU DID MOUNT');        
+    }
     
+
     render () {
         return (
             <div>
