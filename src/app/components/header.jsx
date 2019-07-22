@@ -87,6 +87,7 @@ class Headers extends React.Component{
     insput(e) {
         console.log('INI INPUT',e);
     }
+
     render() {
         return (
             <div>
@@ -130,6 +131,23 @@ class Headers extends React.Component{
                             props_input={(e) =>  this.props.props_input_main(e)}
                             
                         ></InputCustom>
+                        <div >
+                            Pagination
+                            <div style={{display: 'flex'}} >
+                                <ButtonCustom
+                                    click_aja={() => this.props.preview('prev')}
+                                    color='blue'
+                                    value='Preview Page'
+                                ></ButtonCustom>
+                                <div>{this.props.page_now}</div>
+                                <ButtonCustom
+                                    click_aja={() => this.props.next('next')}
+                                    color='green'
+                                    value='Next Page'
+                                ></ButtonCustom>
+                            </div>
+                            
+                        </div>
                     </div>
                     
                 </div>

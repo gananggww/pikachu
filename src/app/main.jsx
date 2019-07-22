@@ -15,7 +15,9 @@ class Main extends React.Component {
             propsan_bro: "",
             data_resp: {
                 results: []
-            }
+            },
+            page: 1,
+            per_page: 10
         }
     }
 
@@ -24,7 +26,7 @@ class Main extends React.Component {
         console.log('AKU WILL MOUNT');        
     }
     componentDidMount() {
-        this.fetching_try()
+        // this.fetching_try()
         console.log('AKU DID MOUNT');        
     }
     
@@ -33,7 +35,7 @@ class Main extends React.Component {
             // header: 'adouhaodbuauod209y08gqydvqudh9qw0d',
             method: 'GET',
             // url: 'https://jsonplaceholder.typicode.com/posts'
-            url: 'https://swapi.co/api/people'
+            url: `https://swapi.co/api/people/?page=${this.state.page}&per_page=${this.state.per_page}`
         }
         axios(opt)
         .then(({data}) => {
@@ -55,7 +57,53 @@ class Main extends React.Component {
             console.log(error)
         }
     }
+
+    nextz() {
+        // alert('aku next')
+        let page = this.state.page
+        this.setState({
+            page: page + 1,
+            data_resp: {
+                results: []
+            }
+        }, function(error) {
+            if (!error)
+                this.fetching()
+            else
+                this.setState({
+                    page: page - 1,
+                    data_resp: {
+                        results: []
+                    }
+                }, () => {
+                    this.fetching()
+                })
+        })
+
+    }
     
+    previewz() {
+        let page = this.state.page
+        if (page <= 1) {
+            this.setState({
+                page : 1,
+                data_resp: {
+                    results: []
+                }
+            }, () => {
+                this.fetching()
+            })
+        } else {
+            this.setState({
+                page : page - 1,
+                data_resp: {
+                    results: []
+                }
+            }, () => {
+                this.fetching()
+            })
+        }
+    }
 
     render () {
         return (
@@ -63,6 +111,9 @@ class Main extends React.Component {
                 <NavBars></NavBars>
                 <Headers
                     props_input_main={(e) => this.setState({propsan_bro: e})}
+                    preview = {() => this.previewz()}
+                    next= {() => this.nextz() }
+                    page_now = {this.state.page}
                 >
                 </Headers>
 
@@ -70,6 +121,7 @@ class Main extends React.Component {
                 props_list= {this.state.propsan_bro}
                 datas = {this.state.data_resp.results}
                 ></Containers>
+                
             </div>
         )
     }

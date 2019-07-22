@@ -3,9 +3,20 @@ import ButtonCustom from '../button'
 
 
 const Lists = ({maping}) => {
+    let defaults = ['loading....', 'loading....', 'loading....',]
     if (maping.length === 0) {
         return (
-            <div>Loading.....</div>
+            <div className='lists-card'>
+                {
+                    defaults.map(e =>  {
+                        return (
+                            <div className='list-card'>
+                                {e}
+                            </div>
+                        )
+                    })
+                }
+            </div>
         )
     } else {
         return (
