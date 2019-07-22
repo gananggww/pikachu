@@ -133,6 +133,7 @@ class Headers extends React.Component{
                         ></InputCustom>
                         <div >
                             Pagination
+                            <div>{this.props.err_msg ? `error ya : ${this.props.err_msg}` : ""}</div>
                             <div style={{display: 'flex'}} >
                                 <ButtonCustom
                                     click_aja={() => this.props.preview('prev')}

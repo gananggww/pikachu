@@ -17,7 +17,8 @@ class Main extends React.Component {
                 results: []
             },
             page: 1,
-            per_page: 10
+            per_page: 10,
+            err_msg: null
         }
     }
 
@@ -43,7 +44,10 @@ class Main extends React.Component {
             this.setState({data_resp:data})
         })
         .catch(error => {
-            console.log(error);
+            this.setState({
+                err_msg: error
+            })
+            // console.log(error);
         })   
          
     }
@@ -65,7 +69,8 @@ class Main extends React.Component {
             page: page + 1,
             data_resp: {
                 results: []
-            }
+            },
+            err_msg: null
         }, function(error) {
             if (!error)
                 this.fetching()
@@ -74,7 +79,8 @@ class Main extends React.Component {
                     page: page - 1,
                     data_resp: {
                         results: []
-                    }
+                    },
+                    err_msg: error
                 }, () => {
                     this.fetching()
                 })
@@ -109,11 +115,13 @@ class Main extends React.Component {
         return (
             <div>
                 <NavBars></NavBars>
+                
                 <Headers
                     props_input_main={(e) => this.setState({propsan_bro: e})}
                     preview = {() => this.previewz()}
                     next= {() => this.nextz() }
                     page_now = {this.state.page}
+                    err_msg = {this.state.err_msg}
                 >
                 </Headers>
 
