@@ -1,4 +1,6 @@
 import React from 'react';
+
+
 import ButtonCustom from './button'
 import InputCustom from './input'
 
@@ -137,13 +139,13 @@ class Headers extends React.Component{
                             <div style={{display: 'flex'}} >
                                 <ButtonCustom
                                     click_aja={() => this.props.preview('prev')}
-                                    color='blue'
+                                    color='Primary'
                                     value='Preview Page'
                                 ></ButtonCustom>
                                 <div>{this.props.page_now}</div>
                                 <ButtonCustom
                                     click_aja={() => this.props.next('next')}
-                                    color='green'
+                                    color='Secondary'
                                     value='Next Page'
                                 ></ButtonCustom>
                             </div>
